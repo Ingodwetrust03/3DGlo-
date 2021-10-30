@@ -1,7 +1,6 @@
 {
   "name": "3dglo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "mode": "development",
   "scripts": {
@@ -13,5 +12,15 @@
   "devDependencies": {
     "webpack": "^5.61.0",
     "webpack-cli": "^4.9.1"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ingodwetrust03/3DGlo-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ingodwetrust03/3DGlo-/issues"
+  },
+  "homepage": "https://github.com/Ingodwetrust03/3DGlo-#readme",
+  "description": ""
 }
