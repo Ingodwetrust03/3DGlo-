@@ -1,7 +1,6 @@
 'use strict'
 
 
-
 const modal = () => {
     const popUp = document.querySelector('.popup')
     const popUpBtn = document.querySelectorAll('.popup-btn')
@@ -15,24 +14,24 @@ const modal = () => {
     let startAnimationClose
 
     const popUpStylesOnLargeScreens = () => {
-    popUp.style.display = 'block'
-    popUp.style.zIndex = '-1'
-    popUp.style.backgroundColor = 'rgba(0,0,0,0)'
-    popUp.style.transition = 'all ease-in .3s'
-    popUpContent.style.top = '-50%'
-    popUpContent.style.transition = 'all ease-in .7s'
+        popUp.style.display = 'block'
+        popUp.style.zIndex = '-1'
+        popUp.style.backgroundColor = 'rgba(0,0,0,0)'
+        popUp.style.transition = 'all ease-in .3s'
+        popUpContent.style.top = '-50%'
+        popUpContent.style.transition = 'all ease-in .7s'
     }
 
     popUpStylesOnLargeScreens()
 
 
    const popUpStylesOnSmallScreens = () => {
-    popUp.style.display = ''
-    popUp.style.zIndex = ''
-    popUp.style.backgroundColor = ''
-    popUp.style.transition = ''
-    popUpContent.style.top = ''
-    popUpContent.style.transition = ''
+        popUp.style.display = ''
+        popUp.style.zIndex = ''
+        popUp.style.backgroundColor = ''
+        popUp.style.transition = ''
+        popUpContent.style.top = ''
+        popUpContent.style.transition = ''
    }
 
     const showPopUp = () => {
