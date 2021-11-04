@@ -7,6 +7,7 @@ import validator from './modules/validator';
 import slider from './modules/slider';
 import tabs from './modules/tabs';
 import calculator from './modules/calculator';
+import smoothScroll from './modules/smoothScroll';
 
 
 timer('10 november 2021')
@@ -16,3 +17,4 @@ validator()
 slider()
 tabs()
 calculator()
+smoothScroll()
