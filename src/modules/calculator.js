@@ -26,7 +26,6 @@ const calculator = (price = 100) => {
             calcDayValue = 2
         } else if (calcDay.value && calcDay.value < 10) {
             calcDayValue = 1.5
-
         }
 
         if (calcType.value && calcSquare.value) {
@@ -37,11 +36,18 @@ const calculator = (price = 100) => {
             totalValue = 0
         }
 
-        total.textContent = totalValue
+
+        let counter = total.textContent
+        let counterAnimation = () => {
+            if (counter < totalValue) {
+                counter++
+                total.textContent = counter
+            }
+        }
+
+        setInterval(counterAnimation, 20)
 
     }
-
-
 
 
     calcBlock.addEventListener('change', (e) => {
