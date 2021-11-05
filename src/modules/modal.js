@@ -1,71 +1,88 @@
 'use strict'
 
+import { animate } from './helpers'
+
 
 const modal = () => {
     const popUp = document.querySelector('.popup')
     const popUpBtn = document.querySelectorAll('.popup-btn')
-    const popUpCloseBtn = document.querySelector('.popup-close')
     const popUpContent = popUp.querySelector('.popup-content')
     const screenWidth = document.documentElement.clientWidth
-    const btnNextSection = document.querySelector('main a:last-child')
 
-
-    let startAnimationShow
-    let startAnimationClose
 
     const popUpStylesOnLargeScreens = () => {
         popUp.style.display = 'block'
         popUp.style.zIndex = '-1'
-        popUp.style.backgroundColor = 'rgba(0,0,0,0)'
-        popUp.style.transition = 'all ease-in .3s'
-        popUpContent.style.top = '-50%'
-        popUpContent.style.transition = 'all ease-in .7s'
+        popUp.style.opacity = '0'
+        popUpContent.style.top = '-30%'
     }
 
     popUpStylesOnLargeScreens()
 
 
-   const popUpStylesOnSmallScreens = () => {
-        popUp.style.display = ''
-        popUp.style.zIndex = ''
-        popUp.style.backgroundColor = ''
-        popUp.style.transition = ''
-        popUpContent.style.top = ''
-        popUpContent.style.transition = ''
-   }
-
     const showPopUp = () => {
-        startAnimationShow = requestAnimationFrame(showPopUp)
-       
-        if(screenWidth <= 768){
-            cancelAnimationFrame(startAnimationShow)
-            popUpStylesOnSmallScreens()
-            popUp.style.display = 'block'    
-        } else {
-            popUp.style.backgroundColor = 'rgba(0,0,0,.5)'
-            popUpContent.style.top = '10%'
-            popUp.style.zIndex = '9' 
+
+        function makeEaseOut(timing) {
+            return function(timeFraction) {
+                return 1 - timing(1 - timeFraction);
+            }
         }
+
+        function bounce(timeFraction) {
+            for (let a = 0, b = 1; 1; a += b, b /= 2) {
+                if (timeFraction >= (7 - 4 * a) / 11) {
+                    return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+                }
+            }
+        }
+        let bounceEaseOut = makeEaseOut(bounce);
+
+        animate({
+            duration: 900,
+            timing: bounceEaseOut,
+            draw(progress) {
+                popUpContent.style.top = (10 * progress) + '%'
+            }
+        })
+
+        animate({
+            duration: 200,
+            timing(timeFraction) {
+                return timeFraction;
+            },
+            draw(progress) {
+                popUp.style.opacity = progress
+                popUp.style.zIndex = '9'
+            }
+        })
+
     }
 
     const closePopUp = () => {
-        startAnimationClose = requestAnimationFrame(closePopUp)
-        
-        if(screenWidth <= 768){
-            cancelAnimationFrame(startAnimationClose)
-            popUpStylesOnSmallScreens()
-            popUp.style.display = 'none'
-        } else {
-            popUpStylesOnLargeScreens()
-        }
+        animate({
+            duration: 600,
+            timing(timeFraction) {
+                return timeFraction;
+            },
+            draw(progress) {
+                popUp.style.opacity = '0'
+                popUpContent.style.top = (-40 * progress) + '%'
+                popUp.style.zIndex = '-1'
+            }
+        })
     }
+
+
+    popUp.addEventListener('click', (e) => {
+        if (!e.target.closest('form')) {
+            closePopUp()
+        }
+    })
 
 
     popUpBtn.forEach((btn) => {
         btn.addEventListener('click', showPopUp)
     })
-
-    popUpCloseBtn.addEventListener('click', closePopUp)
 
 }
 
