@@ -3,18 +3,20 @@
 const menu = () => {
     const menuBtn = document.querySelector('.menu')
     const menu = document.querySelector('menu')
-    const closeBtn = document.querySelector('.close-btn')
-    const menuLinks = menu.querySelectorAll('li > a')
-
 
     const menuHandler = () => {
         menu.classList.toggle('active-menu')
-    }
-    menuBtn.addEventListener('click', menuHandler)
-    closeBtn.addEventListener('click', menuHandler)
-    menuLinks.forEach((link) => {
-        link.addEventListener('click', menuHandler)
+    } 
+ 
+
+    document.addEventListener('click', (e) => {
+        if(e.target.closest('menu') || e.target.closest('.menu')){
+            menuHandler()
+        } else if(!e.target.closest('menu')  && menu.classList.contains('active-menu')){
+            menuHandler()
+        }
     })
+
 
 }
 
