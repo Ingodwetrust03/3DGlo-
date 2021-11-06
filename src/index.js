@@ -6,7 +6,7 @@ import modal from './modules/modal';
 import validator from './modules/validator';
 import slider from './modules/slider';
 import tabs from './modules/tabs';
-import slider from './modules/slider';
+import calculator from './modules/calculator';
 
 
 timer('24 november 2021')
@@ -15,4 +15,4 @@ modal()
 validator()
 slider()
 tabs()
-slider()
+calculator()
