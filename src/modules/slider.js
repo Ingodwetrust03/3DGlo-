@@ -1,12 +1,25 @@
 'use strict'
 
 const slider = () => {
-    const sliderBlock= document.querySelector('.portfolio-content')
+    const sliderBlock = document.querySelector('.portfolio-content')
     const slides = document.querySelectorAll('.portfolio-item')
-    const dots = document.querySelectorAll('.dot')
-    let currentSlide = 0
+    let dots = document.querySelectorAll('.dot')
+    const dotsBlock = document.querySelector('.portfolio-dots')
 
+    let currentSlide = 0
     let interval
+
+    const loadDots = () => {
+        slides.forEach(() => {
+            let newDot = document.createElement('li')
+            newDot.classList.add('dot')
+            dotsBlock.appendChild(newDot)
+        })
+        dots = document.querySelectorAll('.dot')
+        dots[0].classList.add('dot-active')
+    }
+
+    loadDots()
 
     const prevSlide = (elems, index, strClass) => {
         elems[index].classList.remove(strClass)
@@ -21,7 +34,8 @@ const slider = () => {
         prevSlide(dots, currentSlide, 'dot-active')
         currentSlide++
 
-        if(currentSlide >= slides.length){
+
+        if (currentSlide >= slides.length) {
             currentSlide = 0
         }
         nextSlide(slides, currentSlide, 'portfolio-item-active')
@@ -45,43 +59,41 @@ const slider = () => {
         prevSlide(slides, currentSlide, 'portfolio-item-active')
         prevSlide(dots, currentSlide, 'dot-active')
 
-        if(e.target.matches('#arrow-right')){
+        if (e.target.matches('#arrow-right')) {
             currentSlide++
-        } else if(e.target.matches('#arrow-left')){
+        } else if (e.target.matches('#arrow-left')) {
             currentSlide--
-        } else if(e.target.classList.contains('dot')){
+        } else if (e.target.classList.contains('dot')) {
             dots.forEach((dot, index) => {
-                if(e.target === dot){
+                if (e.target === dot) {
                     currentSlide = index
                 }
             })
-           
+
         }
 
-        if(currentSlide >= slides.length){
+        if (currentSlide >= slides.length) {
             currentSlide = 0
         }
-        if(currentSlide < 0){
+        if (currentSlide < 0) {
             currentSlide = slides.length - 1
         }
         nextSlide(slides, currentSlide, 'portfolio-item-active')
         nextSlide(dots, currentSlide, 'dot-active')
-        
     })
 
 
     sliderBlock.addEventListener('mouseenter', (e) => {
-        if(e.target.matches('.dot, .portfolio-btn')){
+        if (e.target.matches('.dot, .portfolio-btn')) {
             stopSlide()
         }
-       
+
     }, true)
 
     sliderBlock.addEventListener('mouseleave', (e) => {
-        if(e.target.matches('.dot, .portfolio-btn')){
+        if (e.target.matches('.dot, .portfolio-btn')) {
             startSlide(2000)
         }
-        
     }, true)
 
 
