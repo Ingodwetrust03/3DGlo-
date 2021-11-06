@@ -1,5 +1,7 @@
 'use strict'
 
+import { animate } from './helpers'
+
 const calculator = (price = 100) => {
     const calcBlock = document.querySelector('.calc-block')
     const calcType = document.querySelector('.calc-type')
@@ -38,17 +40,25 @@ const calculator = (price = 100) => {
 
 
         let counter = total.textContent
-        let counterAnimation = () => {
-            if (counter < totalValue) {
-                counter++
-                total.textContent = counter
-            } else if (counter > totalValue) {
-                counter--
-                total.textContent = counter
-            }
-        }
 
-        setInterval(counterAnimation, 20)
+        setInterval(() => {
+            animate({
+            duration: 3000,
+            timing(timeFraction) {
+                return Math.pow(timeFraction, 5)
+              },
+            draw(progress) {
+                if (counter < totalValue) {
+                    counter++
+                    total.textContent = counter
+                } else if (counter > totalValue) {
+                    counter--
+                    total.textContent = counter
+                }
+
+            }
+        })
+    }, 20)
 
     }
 
