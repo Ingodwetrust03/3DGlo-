@@ -10,7 +10,7 @@ import calculator from './modules/calculator';
 import smoothScroll from './modules/smoothScroll';
 
 
-timer('10 november 2021')
+timer('24 november 2021')
 menu()
 modal()
 validator()
