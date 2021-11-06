@@ -34,6 +34,7 @@ const slider = () => {
         prevSlide(dots, currentSlide, 'dot-active')
         currentSlide++
 
+
         if (currentSlide >= slides.length) {
             currentSlide = 0
         }
@@ -52,7 +53,7 @@ const slider = () => {
     sliderBlock.addEventListener('click', (e) => {
         e.preventDefault()
 
-        if (!e.target.matches('.dot, .portfolio-btn')) {
+        if(!e.target.matches('.dot, .portfolio-btn')){
             return
         }
         prevSlide(slides, currentSlide, 'portfolio-item-active')
@@ -79,7 +80,6 @@ const slider = () => {
         }
         nextSlide(slides, currentSlide, 'portfolio-item-active')
         nextSlide(dots, currentSlide, 'dot-active')
-
     })
 
 
@@ -94,7 +94,6 @@ const slider = () => {
         if (e.target.matches('.dot, .portfolio-btn')) {
             startSlide(2000)
         }
-
     }, true)
 
 
