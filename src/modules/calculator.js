@@ -42,6 +42,9 @@ const calculator = (price = 100) => {
             if (counter < totalValue) {
                 counter++
                 total.textContent = counter
+            } else if (counter > totalValue) {
+                counter--
+                total.textContent = counter
             }
         }
 
