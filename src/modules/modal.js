@@ -19,6 +19,14 @@ const modal = () => {
 
     popUpStylesOnLargeScreens()
 
+    const popUpStylesOnSmallScreens = () => {
+        popUpContent.style.animate = ''
+        popUp.style.display = ''
+        popUp.style.zIndex = ''
+        popUp.style.opacity = ''
+        popUpContent.style.top = ''
+    }
+
 
     const showPopUp = () => {
 
@@ -35,41 +43,56 @@ const modal = () => {
                 }
             }
         }
-        let bounceEaseOut = makeEaseOut(bounce);
 
-        animate({
-            duration: 900,
-            timing: bounceEaseOut,
-            draw(progress) {
-                popUpContent.style.top = (10 * progress) + '%'
-            }
-        })
+        let bounceEaseOut = makeEaseOut(bounce)
 
-        animate({
-            duration: 200,
-            timing(timeFraction) {
-                return timeFraction;
-            },
-            draw(progress) {
-                popUp.style.opacity = progress
-                popUp.style.zIndex = '9'
-            }
-        })
+        if (screenWidth <= 768) {
+            popUpStylesOnSmallScreens()
+            popUp.style.display = 'block'
+        } else {
+            animate({
+                duration: 900,
+                timing: bounceEaseOut,
+                draw(progress) {
+                    popUpContent.style.top = (10 * progress) + '%'
+                }
+            })
+
+            animate({
+                duration: 200,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    if (screenWidth <= 768) {
+                        popUpStylesOnSmallScreens()
+                        popUp.style.display = 'block'
+                    }
+                    popUp.style.opacity = progress
+                    popUp.style.zIndex = '9'
+                }
+            })
+
+        }
 
     }
 
     const closePopUp = () => {
-        animate({
-            duration: 600,
-            timing(timeFraction) {
-                return timeFraction;
-            },
-            draw(progress) {
-                popUp.style.opacity = '0'
-                popUpContent.style.top = (-40 * progress) + '%'
-                popUp.style.zIndex = '-1'
-            }
-        })
+        if (screenWidth <= 768) {
+            popUpStylesOnSmallScreens()
+        } else {
+            animate({
+                duration: 600,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    popUp.style.opacity = '0'
+                    popUpContent.style.top = (-40 * progress) + '%'
+                    popUp.style.zIndex = '-1'
+                }
+            })
+        }
     }
 
 
