@@ -11,7 +11,7 @@ const animate = ({timing, draw, duration}) => {
       if (timeFraction > 1) timeFraction = 1;
 
       // вычисление текущего состояния анимации
-      let progress = timing(1, timeFraction);
+      let progress = timing(timeFraction);
   
       draw(progress); // отрисовать её
   
