@@ -30,8 +30,9 @@ const calculator = (price = 100) => {
 
     if (calcType.value && calcSquare.value) {
       console.log(calcCountValue);
-      totalValue =
-        price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
+      totalValue = parseInt(
+        price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue
+      );
       console.log(totalValue);
     } else {
       totalValue = 0;

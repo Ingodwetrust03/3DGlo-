@@ -14,15 +14,20 @@ const sendForm = ({ formId = [], someElem = [] }) => {
       if (!el.value) {
         el.setAttribute("placeholder", "Заполните поля");
         el.style.border = "1px solid red";
+
         success = false;
-      } else if (el.type === "tel") {
+      } else if (el.getAttribute("name") === "user_phone") {
         if (!/^[\d\+]+$/.test(el.value) && el.value !== "") {
           el.value = "";
           el.setAttribute("placeholder", "Используйте цифры и знак +");
           el.style.border = "1px solid red";
+
           success = false;
         } else {
           el.style.border = "";
+          el.value = "";
+          el.setAttribute("placeholder", "Номер телефона");
+
           success = true;
         }
       } else if (el.getAttribute("name") === "user_message") {
@@ -36,6 +41,7 @@ const sendForm = ({ formId = [], someElem = [] }) => {
           success = false;
         } else {
           el.style.border = "";
+          el.value = "";
           success = true;
         }
       } else if (el.getAttribute("name") === "user_name") {
