@@ -41,6 +41,8 @@ const timer = (deadline) => {
     timerHours.textContent = addZero(getCountedHours);
     timerMinutes.textContent = addZero(getCountedMinutes);
     timerSeconds.textContent = addZero(getCountedSeconds);
+
+    setInterval(timerAnimation, 1000);
   };
 
   if (getCountedTime.remainedSeconds < 0) {
@@ -49,7 +51,7 @@ const timer = (deadline) => {
     timerMinutes.textContent = "00";
     timerSeconds.textContent = "00";
   } else {
-    setInterval(timerAnimation, 1000);
+    timerAnimation();
   }
 };
 
