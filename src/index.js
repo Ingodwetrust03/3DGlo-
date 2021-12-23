@@ -8,6 +8,7 @@ import slider from './modules/slider';
 import tabs from './modules/tabs';
 import calculator from './modules/calculator';
 import smoothScroll from './modules/smoothScroll';
+import sendForm from './modules/sendForm';
 
 
 timer('24 november 2021')
@@ -18,3 +19,12 @@ slider()
 tabs()
 calculator()
 smoothScroll()
+sendForm({
+    formId: ['form1','form3', 'form2'], 
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+})
